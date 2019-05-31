@@ -55,10 +55,4 @@ endif()
 # vendored dependencies
 add_subdirectory(vendor)
 
-# Core libraries
-#add_subdirectory(src/osvr)
-
 add_subdirectory(plugins)
-if(BUILD_TESTING)
-    # add_subdirectory(tests)
-endif()
