@@ -1,26 +1,7 @@
 
 if(BUILD_TESTING)
-    if(BUILD_SHARED_LIBS)
-        set(OSVR_GTEST_SHARED_LIB ON)
-    else()
-        set(OSVR_GTEST_SHARED_LIB OFF)
-    endif()
-    set(OSVR_GTEST_SHARED_LIB ${OSVR_GTEST_SHARED_LIB} CACHE INTERNAL "" FORCE)
-    if(WIN32)
-        set(gtest_force_shared_crt ON)
-    endif()
-    if(ANDROID)
-        set(ORIG_FLAGS "${CMAKE_CXX_FLAGS}")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGTEST_HAS_CLONE=0")
-    endif()
-    add_subdirectory(gtest-1.7.0)
-    if(ANDROID)
-        set(CMAKE_CXX_FLAGS "${ORIG_FLAGS}")
-    endif()
-
-    # Create an interface target to consume Catch
-    add_library(vendored-catch INTERFACE)
-    target_include_directories(vendored-catch INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/catch-single-header-1.5.8")
+    # Will search for a system install first.
+    add_subdirectory(catch-single-header-2.8.0)
 endif()
 
 # Interface target for util headers
